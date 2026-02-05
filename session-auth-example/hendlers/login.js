@@ -1,5 +1,5 @@
 export const loginHandler = (req, res) => {
-    if(req.session.userId) {
+    if (req.session.userId) {
         return res.redirect("/");
     };
 

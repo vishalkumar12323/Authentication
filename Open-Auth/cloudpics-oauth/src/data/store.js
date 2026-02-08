@@ -8,7 +8,7 @@ const users = [
     }
 ];
 
-const oauthClient = [
+const oauthClients = [
     {
         clientId: "photoshare",
         clientSecret: "photoshare-secret",
@@ -18,5 +18,7 @@ const oauthClient = [
 ];
 
 const authCodes = [];
+const accessTokens = [];
+const refreshTokens = [];
 
-export { users, oauthClient, authCodes };
+export { users, oauthClients, authCodes, accessTokens, refreshTokens };

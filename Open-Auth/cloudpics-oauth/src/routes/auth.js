@@ -4,6 +4,10 @@ import { users } from "../data/store.js";
 
 const router = express.Router();
 
+router.get("/login", (_req, res) => {
+    res.render("login.ejs");
+})
+
 router.post("/login", (req, res) => {
     const { email, password } = req.body;
 
@@ -14,7 +18,7 @@ router.post("/login", (req, res) => {
     if (!isPasswordValid) return res.status(401).json({ message: "Invalid credentials" });
 
     res.cookie("userId", user.id, { httpOnly: true });
-    res.json({ message: "Login successed" });
+    res.redirect("/dashboard/your-photos")
 });
 
 export default router;

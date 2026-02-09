@@ -1,6 +1,6 @@
 import express from "express";
 import { v4 as uuidv4 } from "uuid";
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 
 import { oauthClients, authCodes, accessTokens, refreshTokens } from "../data/store.js";
 
@@ -10,14 +10,15 @@ router.get("/oauth/authorize", (req, res) => {
     const { client_id, redirect_uri, scope, response_type, } = req.query;
 
     if (response_type !== "code") {
-        res.status(400).send("Unsupported response type.");
+        return res.status(400).send("Unsupported response type.");
     };
     const client = oauthClients.find((c) => c.clientId === client_id);
+    console.log("client:: ", client);
     if (!client || client.redirectUri !== redirect_uri) {
-        res.status(400).send("Invalid client");
+        return res.status(400).send("Invalid client");
     };
 
-    res.send(
+    return res.send(
         `
         <h2>${client.name} wants access</h2>
         <p>Requested scope: ${scope}</p>

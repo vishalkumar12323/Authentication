@@ -1,10 +1,12 @@
-import "dotenv/config";
+import dotenv from "dotenv";
 import express from "express";
 import cookieParser from "cookie-parser";
 
 import authRoutes from "./routes/auth.js";
 import oauthRoutes from "./routes/oauth.js";
 import photosRoutes from "./routes/photos.js"
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT ?? 4489;

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhotoShare - play with your photos</title>
+</head>
+
+<body>
+    <h2>Your Photos</h2>
+    
+    <% if (locals.photos && locals.photos.length> 0) { %>
+        <% photos.forEach(photo => { %>
+            <div class="photo-container" id="<%=photo.id %>">
+                <h5>
+                    <%= photo.name %>
+                </h5>
+                <a href="<%=photo.url %>" >See Your Photo</a>
+            </div>
+        <% }) %>
+    <% } else { %>
+        <p>No any photos.</p>
+    <% } %>
+
+</body>
+
+</html>

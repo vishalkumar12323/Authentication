@@ -3,4 +3,5 @@ const tokens = {
     refreshToken: null,
 };
 
+export const photos = [];
 export default tokens;

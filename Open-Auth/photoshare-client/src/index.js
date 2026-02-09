@@ -6,7 +6,8 @@ import { fileURLToPath } from "url";
 import authRoutes from "./routes/auth.js";
 import oauthRoutes from "./routes/oauth.js";
 import photosRoutes from "./routes/photos.js";
-import { photos } from "./data/store.js";
+import tokens from "./data/store.js";
+import axios from "axios";
 
 const app = express();
 
@@ -29,11 +30,15 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/dashboard/photos", (_req, res) => {
-  console.log("photos:: ", photos);
-  // Assuming user always loggedIn
+app.get("/dashboard/photos", async(_req, res) => {
+  const response = await axios.get("http://localhost:4489/photos", {
+    headers: {
+      "Authorization": `Bearer ${tokens.accessToken}`
+    }
+  });
+
   res.render("photos.ejs", {
-    photos: [],
+    photos: response.data.photos,
   });
 });
 

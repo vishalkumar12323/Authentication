@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constent - <%= client.name %> wants access</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #1e1e1e;
+            color: white;
+        }
+
+        .constent-screen {
+            max-width: 1000px;
+            width: 100%;
+            margin: 100px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 70vh;
+            background: #131414;
+            border-radius: 20px;
+        }
+
+        h2 {
+            font-size: 3rem;
+            text-transform: capitalize;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 20px;
+            margin-bottom: 15px;
+
+            span {
+                color: #05cd05;
+            }
+        }
+
+        button[type="submit"] {
+            cursor: pointer;
+            padding: 10px 20px;
+            outline: none;
+            border-radius: 3px;
+            border: none;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="constent-screen">
+        <h2>
+            <%= client.name %> wants access
+        </h2>
+        <p>Requested scope <span>
+                <%= scope %>
+            </span>
+        </p>
+
+        <form method="POST" action="/oauth/approve">
+            <input type="hidden" name="client_id" value="<%= client.clientId %>" />
+            <input type="hidden" name="redirect_uri" value="<%= client.redirectUri %>" />
+            <input type="hidden" name="scope" value="<%= scope %>" />
+            <button type="submit">Approve</button>
+        </form>
+    </div>
+</body>
+
+</html>

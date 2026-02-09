@@ -10,27 +10,27 @@ router.get("/oauth/authorize", (req, res) => {
     const { client_id, redirect_uri, scope, response_type, } = req.query;
 
     if (response_type !== "code") {
-        return res.status(400).send("Unsupported response type.");
+        return res.status(400).send(`
+                <div style="background: #1e1e1e; color: #fff; height: 100vh; display: flex;
+                align-items: center; justify-content: center; text-transform: capitalize; font-size: 30px;">
+                    Unsupported response type
+                </div>
+            `);
     };
     const client = oauthClients.find((c) => c.clientId === client_id);
-    console.log("client:: ", client);
     if (!client || client.redirectUri !== redirect_uri) {
-        return res.status(400).send("Invalid client");
+        return res.status(400).send(`
+                <div style="background: #1e1e1e; color: #fff; height: 100vh; display: flex;
+                align-items: center; justify-content: center; text-transform: capitalize; font-size: 30px;">
+                    Invalid client
+                </div>
+            `);
     };
 
-    return res.send(
-        `
-        <h2>${client.name} wants access</h2>
-        <p>Requested scope: ${scope}</p>
-
-        <form method="POST" action="/oauth/approve">
-        <input type="hidden" name="client_id" value="${client_id}" />
-        <input type="hidden" name="redirect_uri" value="${redirect_uri}" />
-        <input type="hidden" name="scope" value="${scope}" />
-        <button type="submit">Approve</button>
-        </form>
-    `
-    );
+    return res.render("approve.ejs", {
+        client: client,
+        scope: scope
+    });
 });
 
 

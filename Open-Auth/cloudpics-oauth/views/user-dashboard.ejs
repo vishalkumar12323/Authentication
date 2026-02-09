@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard</title>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: white;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Welcome <%= locals.user.name %></h1>
+    <h1>Welcome <%= locals.user.name %>
+    </h1>
 
     <h2>Your All Photos</h2>
-    <% photos.forEach(photo => { %>
+    <% photos.forEach(photo=> { %>
         <div style="display: flex; gap: 5px; align-items: center;">
-            <h3><%= photo.name %></h3>
+            <h3>
+                <%= photo.name %>
+            </h3>
             <a href="<%= photo.url %>">Download</a>
         </div>
-    <% }) %>
+        <% }) %>
 </body>
+
 </html>

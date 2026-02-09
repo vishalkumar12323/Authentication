@@ -1,23 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/login.css">
     <title>GetStarted - Login to CloudPics</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+            height: 70vh;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            font-family: 'Inter';
+            background-color: #131414;
+            border-radius: 20px;
+        }
+
+        .email-input {
+            width: 100%;
+            padding: 5px 2px;
+            font-size: 18px;
+            outline: none;
+            margin-bottom: 15px;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 5px 2px;
+            font-size: 18px;
+            outline: none;
+            margin-bottom: 15px;
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+
+            button[type='submit'] {
+                cursor: pointer;
+                padding: 8px 20px;
+                outline: none;
+                border-radius: 3px;
+                border: none;
+                font-size: 16px;
+            }
+
+            .errorMessage {
+                color: red;
+                font-size: 15px;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <div class="login-container">
         <h2>Welcome Back</h2>
-        <form action="/login", method="post">
-            <input type="email" name="email" id="email" class="email-input" placeholder="abc@gmail.com" value="vishal@gmail.com">
-            <input type="password " name="password" id="password" class="password-input" placeholder="...........", value="password123">
+        <form action="/login" , method="post">
+            <input type="email" name="email" id="email" class="email-input" placeholder="abc@gmail.com"
+                value="vishal@gmail.com">
+            <input type="password " name="password" id="password" class="password-input" placeholder="..........." ,
+                value="password123">
 
-            <input type="submit" value="Login">
+            <div class="form-footer">
+                <button type="submit"> Login </button>
+                <% if (locals.errorMessage) { %>
+                    <p class="errorMessage">
+                        <%= errorMessage %>
+                    </p>
+                    <% } %>
+            </div>
         </form>
     </div>
 </body>
+
 </html>

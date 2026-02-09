@@ -20,7 +20,7 @@ router.get("/oauth/cloudpics/callback", async (req, res) => {
         tokens.accessToken = tokenRes.data.access_token;
         tokens.refreshToken = tokenRes.data.refresh_token;
 
-        res.send("OAuth success! You can now import photos.");
+        res.redirect("/dashboard/photos");
     } catch (err) {
         console.log("Error:: ", err);
         res.status(500).send("OAuth failed");

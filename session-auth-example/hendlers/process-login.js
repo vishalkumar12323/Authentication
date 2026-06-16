@@ -12,5 +12,5 @@ export const processLogin = (req, res) => {
     }
     req.session.userId = req.body.username;
     req.session.user = user;
-    res.status(200).json({ status: 'success', userId: username });
+    res.status(301).redirect("/");
 }

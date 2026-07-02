@@ -8,11 +8,11 @@ export function authenticate(req, res, next) {
         return res.status(401).json({ message: "Access Denied, Token Required." });
     };
 
-    jwt.verify(token, "MYJWTSECRETS", (err, user) => {
+    jwt.verify(token, "MYJWTSECRETS", (err, payload) => {
         if (err) {
             return res.status(403).json({ message: "Invalid or token expired." });
         }
-        req.user = user;
+        req.user = payload;
         next();
     })
 }
